@@ -1,6 +1,6 @@
 {
     "name": "laraform/laraform-laravel",
-    "description": "Laraform Laravel package",
+    "description": "Laraform Community Edition (Laravel)",
     "version": "1.0.1",
     "type": "library",
     "keywords": ["laravel", "form", "builder", "generator"],

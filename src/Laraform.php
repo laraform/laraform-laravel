@@ -2,8 +2,8 @@
 
 /*!
  *  Laraform
- *  License: https://github.com/laraform/laraform/blob/master/LICENSE.txt
- *  Copyright (c) Adam Berecz <adam@laraform.io>
+ *  License: https://github.com/laraform/laraform-laravel/blob/master/LICENSE
+ *  Copyright (c) 2018-2019 Adam Berecz <adam@laraform.io>
  */
 
 namespace Laraform;
