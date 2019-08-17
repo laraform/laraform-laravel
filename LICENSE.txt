@@ -1,0 +1,41 @@
+Copyright (c) Adam Berecz <adam@laraform.io>
+
+GRANT OF LICENSE
+
+Subject to the terms and conditions of this license, the
+licensor as indicated in the copyright notice above (“Licensor”)
+hereby grants to you a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable copyright license to reproduce
+Laraform software (“Software”), prepare original works of authorship
+based on or derived from Software (“Derivative Works”).
+
+PERMITTED USE
+
+Your permitted use of items and rights provided in this license
+(“Deliverables”) involves practicing the rights granted under this
+license for such non-commercial purposes as, but not limited to,
+hobby projects, school projects, non-profit projects.
+
+PROHIBITED OR LIMITED USE
+
+Your use of Deliverables may not be intended for or result in
+commercial advantage or monetary compensation – such prohibited
+commercial use includes, without limitation, running business
+operations, licensing, leasing, bartering or selling Software or
+Derivative Works, or distributing any one of them for use with commercial
+products or services, irrespective of whether commercial purposes
+are contemplated or sought. Your use of Deliverables in commercial
+settings, such as within your capacity as employee of a business
+entity, is strictly limited to evaluation, development and testing tier
+of a software deployment architecture. You are prohibited to modify,
+alter, publish or distribute the Software in any form beside your 
+own use.
+
+DISCLAIMER
+
+LARAFORM PROVIDES THIS SOFTWARE ON AN “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND. IN NO EVENT
+AND UNDER NO LEGAL THEORY, SHALL LARAFORM BE LIABLE
+TO YOU FOR DAMAGES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL,
+INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER ARISING
+FROM USE OR INABILITY TO USE THIS SOFTWARE.

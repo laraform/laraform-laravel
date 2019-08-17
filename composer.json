@@ -1,0 +1,42 @@
+{
+    "name": "laraform/laraform-laravel",
+    "description": "Laraform Laravel package",
+    "version": "1.1.1",
+    "type": "library",
+    "keywords": ["laravel", "form", "builder", "generator"],
+    "homepage": "https://laraform.io",
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "authors": [
+        {
+            "name": "Adam Berecz",
+            "email": "adam@laraform.io"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/laraform/laraform/issues",
+        "docs": "https://laraform.io/docs"
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "hashids/hashids": "^3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laraform\\": "src/"
+        }
+    },
+    "extra": {
+      "laravel": {
+          "providers": [
+              "Laraform\\LaraformServiceProvider"
+          ],
+          "aliases": {
+              "Laraform": "Laraform\\Laraform"
+          }
+      }
+    }
+}

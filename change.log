@@ -1,0 +1,5 @@
+Laraform (laraform-laravel) 1.1.0
+Release date: 2019-06-30
+Notes:
+- new form property/method added called "with" which can 
+- new form property called "storePath" which sets "store-path" for the form component
