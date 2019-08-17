@@ -1,4 +1,4 @@
-## Laraform Laravel Package
+# Laraform Community Edition (Laravel)
 
 This repository contains the Laravel package of Laraform's Community Edition.
 
