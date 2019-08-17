@@ -5,7 +5,7 @@
     "type": "library",
     "keywords": ["laravel", "form", "builder", "generator"],
     "homepage": "https://laraform.io",
-    "license": "SEE LICENSE IN LICENSE.txt",
+    "license": "MIT",
     "authors": [
         {
             "name": "Adam Berecz",
