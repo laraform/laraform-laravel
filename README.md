@@ -15,6 +15,7 @@ composer require laraform/laraform-laravel
 
 ``` php
 // app/Forms/MyFirstForm.php
+
 <?php
 
 namespace App\Forms;
