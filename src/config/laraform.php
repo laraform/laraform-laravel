@@ -40,7 +40,7 @@ return [
     | Default form layout. If `false` no layout will be used.
     |
     */
-    'layout' => false,
+    'layout' => 'horizontal',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,8 +73,8 @@ return [
     */
     'columns' => [
         'element' => 12,
-        'label' => 12,
-        'field' => 12
+        'label' => 2,
+        'field' => 10
     ],
 
     /*
@@ -100,5 +100,5 @@ return [
     |   step: before moving to the next step when using Wizard
     |
     */
-    'validateOn' => 'submit|change|step',
+    'validateOn' => 'submit|change',
 ];
