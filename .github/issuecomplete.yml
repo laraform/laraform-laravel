@@ -5,7 +5,7 @@ labelName: more information needed
 commentText: >
     Thank you for submitting a ticket. It looks like you haven't filled in the issue template properly and thus we might not be able to help you with this one. Please check out issue templates at https://github.com/laraform/laraform-laravel/blob/master/.github/ISSUE_TEMPLATES/ folder and add what's missing. This is an automated message. 
 # Whether or not to ensure all checkboxes are checked
-checkCheckboxes: false
+checkCheckboxes: true
 
 # Keywords to look for in the body of the issue
 keywords:
