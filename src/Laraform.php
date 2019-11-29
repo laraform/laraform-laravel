@@ -286,6 +286,10 @@ class Laraform implements \JsonSerializable
 		ElementFactory $elementFactory,
 		DatabaseBuilder $databaseBuilder
 	) {
+		if (method_exists($this, 'boot')) {
+			app()->call([$this, 'boot']);
+		}
+
 		$this->setSchema();
 
 		$this->database = $databaseBuilder
@@ -306,10 +310,6 @@ class Laraform implements \JsonSerializable
 		$this->elementFactory = $elementFactory;
 
 		$this->setElements();
-
-		if (method_exists($this, 'boot')) {
-			app()->call([$this, 'boot']);
-		}
 	}
 
 	/**
