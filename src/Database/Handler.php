@@ -2,7 +2,7 @@
 
 namespace Laraform\Database;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use Laraform\Contracts\Database\Handler as HandlerContract;
 use Laraform\Contracts\Elements\Element;
 use Laraform\Support\Arr;
