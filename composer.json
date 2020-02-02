@@ -1,7 +1,7 @@
 {
     "name": "laraform/laraform-laravel",
     "description": "Laraform Community Edition (Laravel)",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "type": "library",
     "keywords": ["laravel", "form", "builder", "generator"],
     "homepage": "https://laraform.io",
