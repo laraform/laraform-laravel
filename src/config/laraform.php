@@ -51,7 +51,7 @@ return [
     | should have a label DOM element rendered.
     |
     */
-    'labels' => true,
+    'labels' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -73,8 +73,8 @@ return [
     */
     'columns' => [
         'element' => 12,
-        'label' => 2,
-        'field' => 10
+        'label' => 12,
+        'field' => 12
     ],
 
     /*
