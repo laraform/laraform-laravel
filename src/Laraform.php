@@ -152,6 +152,15 @@ class Laraform implements \JsonSerializable
 	public $endpoint;
 
 	/**
+	 * Method how the form should be submitted
+	 * 
+	 * Default: config('laraform.method')
+	 *
+	 * @var string
+	 */
+	public $method;
+
+	/**
 	 * Validated form on these events
 	 * 
 	 * Default: config('laraform.validateOn')
@@ -296,15 +305,6 @@ class Laraform implements \JsonSerializable
 			->setForm($this)
 			->build();
 
-		$this->authorization = $authorizationBuilder
-			->setPermissions($this->permissions)
-			->build();
-
-		$this->user = $userBuilder
-			->setGuard($this->guard)
-			->setRolesAttribute($this->getRolesAttribute())
-			->build();
-
 		$this->validation = $validation;
 		$this->event = $event;
 		$this->elementFactory = $elementFactory;
@@ -367,10 +367,6 @@ class Laraform implements \JsonSerializable
 	{
 		$this->setKey($key);
 
-		if (!$this->authorized('load')) {
-			return false;
-		}
-
 		$this->fire('loading');
 
 		$this->setData($this->database->load($key));
@@ -387,10 +383,6 @@ class Laraform implements \JsonSerializable
 	 */
 	public function save()
 	{
-		if (!$this->authorized($this->hasKey() ? 'update' : 'insert')) {
-			return false;
-		}
-
 		$this->fire('saving');
 
 		$this->hasKey() ? $this->update() : $this->insert();
@@ -498,33 +490,6 @@ class Laraform implements \JsonSerializable
 	}
 
 	/**
-	 * Permit an action for certain role and callback
-	 *
-	 * @param string $action
-	 * @param string $role
-	 * @param callable $callback
-	 * @return void
-	 */
-	public function permit($action, $role = null, callable $callback = null)
-	{
-		$this->authorization->permit($action, $role, $callback);
-	}
-
-	/**
-	 * Determine if the user can perfom an action on a given dataset
-	 *
-	 * @param string $action
-	 * @param array|integer $data
-	 * @return boolean
-	 */
-	public function can($action, $data)
-	{
-		$this->setKey(is_numeric($data) ? $data : $data[$this->primaryKey]);
-
-		return $this->authorization->authorize($action, $this->user, $this->getEntity());
-	}
-
-	/**
 	 * Creates a fail response
 	 *
 	 * @param string $message
@@ -586,24 +551,6 @@ class Laraform implements \JsonSerializable
 	}
 
 	/**
-	 * Determine if the current user is authorized to perform an action
-	 *
-	 * @param string $action
-	 * @return boolean
-	 */
-	public function authorized($action)
-	{
-		$authorized = $this->authorization->authorize($action, $this->user, $this->getEntity());
-
-		if (!$authorized) {
-			$this->response->fail();
-			$this->response->setHttpResponseCode(403);
-		}
-
-		return $authorized;
-	}
-
-	/**
 	 * Return the entity based on current key
 	 *
 	 * @return object
@@ -621,6 +568,16 @@ class Laraform implements \JsonSerializable
 	public function getKey()
 	{
 		return $this->key;
+	}
+
+	/**
+	 * Get the underlying validator instance
+	 *
+	 * @return Illuminate\Validation\Validator
+	 */
+	public function getValidator()
+	{
+		return $this->validation->validator->validator;
 	}
 
 	/**
@@ -781,6 +738,18 @@ class Laraform implements \JsonSerializable
 	}
 
 	/**
+	 * Set method
+	 *
+	 * @return Laraform
+	 */
+	public function setMethod($method)
+	{
+    $this->method = $method;
+
+    return $this;
+	}
+
+	/**
 	 * Returns roles attribute name
 	 *
 	 * @return string
@@ -834,6 +803,18 @@ class Laraform implements \JsonSerializable
 	}
 
 	/**
+	 * Retrieving messages
+	 *
+	 * @return array
+	 */
+	public function getMessages()
+	{
+		return method_exists($this, 'messages')
+      ? $this->messages()
+      : $this->messages;
+	}
+
+	/**
 	 * Form theme
 	 *
 	 * @return string
@@ -860,7 +841,7 @@ class Laraform implements \JsonSerializable
 	 */
 	public function getLanguage()
 	{
-		return $this->locale ?: config('laraform.language');
+		return $this->language ?: config('laraform.language');
 	}
 
 	/**
@@ -881,6 +862,16 @@ class Laraform implements \JsonSerializable
 	public function getEndpoint()
 	{
 		return $this->endpoint ?: config('laraform.endpoint');
+	}
+
+	/**
+	 * Submission method
+	 *
+	 * @return string
+	 */
+	public function getMethod()
+	{
+		return $this->method ?: config('laraform.method');
 	}
 	
 	/**
@@ -964,9 +955,10 @@ class Laraform implements \JsonSerializable
 			'formErrors' => $this->getFormErrors(),
 			'buttons' => $this->getButtons(),
 			'with' => $this->with,
-			'messages' => $this->messages,
+			'messages' => $this->getMessages(),
 			'locale' => $this->getLocale(),
 			'endpoint' => $this->getEndpoint(),
+			'method' => $this->getMethod(),
 			'validateOn' => $this->getValidateOn(),
 		];
 
