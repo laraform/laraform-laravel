@@ -101,6 +101,8 @@ class Strategy implements StrategyContract
             $name = $this->addWildcards($name);
         }
 
+        $rule = $this->removeDebounce($rule);
+
         $validator->addRules([
             $name => [$rule]
         ]);
@@ -261,6 +263,16 @@ class Strategy implements StrategyContract
         } else {
             return 'language';
         }
+    }
+
+    /**
+     * Removes debounce param from rule
+     *
+     * @param [string] $rule
+     * @return string
+     */
+    protected function removeDebounce($rule) {
+      return preg_replace('/[:,]?debounce=\d*[^,]/', '', $rule);
     }
 
     /**
