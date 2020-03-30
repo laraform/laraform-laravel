@@ -13,7 +13,7 @@ class Validation implements ValidationContract
      *
      * @var Validator
      */
-    private $validator;
+    public $validator;
 
     /**
      * Return new Validation instance

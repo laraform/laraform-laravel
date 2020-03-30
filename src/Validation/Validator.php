@@ -13,7 +13,7 @@ class Validator implements ValidatorContract
      *
      * @var IlluminateValidator
      */
-    protected $validator;
+    public $validator;
 
     /**
      * Return new instancd of Validator
