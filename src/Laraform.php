@@ -901,7 +901,7 @@ class Laraform implements \JsonSerializable
 	 */
 	public function getLabels()
 	{
-		return $this->labels !== null ? $this->formErrors : config('laraform.labels');
+		return $this->labels !== null ? $this->labels : config('laraform.labels');
 	}
 
 	/**
