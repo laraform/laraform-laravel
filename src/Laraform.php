@@ -874,7 +874,7 @@ class Laraform implements \JsonSerializable
 		return $this->method ?: config('laraform.method');
 	}
 	
-	/**
+	/** 
 	 * Returns validateOn
 	 *
 	 * @return string
