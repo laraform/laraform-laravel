@@ -2,6 +2,7 @@
 
 namespace Laraform\Validation\Strategies;
 
+use Illuminate\Contracts\Validation\Rule;
 use Laraform\Validation\StrategyBuilder;
 use Laraform\Support\Arr;
 use Laraform\Contracts\Validation\Validator;
@@ -88,20 +89,18 @@ class Strategy implements StrategyContract
     protected function addRule(Validator $validator, $rule, $name)
     {
         if (is_string($rule)) {
-            $rule = $this->fillWildcards($rule, $name);
+            $rule = $this->fillWildcards($this->removeDebounce($rule), $name);
         }
 
         if (is_array($rule)) {
             $rule = array_map(function($one) use ($name) {
-                return $this->fillWildcards($one, $name);
+                return $this->fillWildcards($this->removeDebounce($one), $name);
             }, $rule);
         }
 
         if (in_array($rule, $this->withWildcards)) {
             $name = $this->addWildcards($name);
         }
-
-        $rule = $this->removeDebounce($rule);
 
         $validator->addRules([
             $name => [$rule]
@@ -155,6 +154,9 @@ class Strategy implements StrategyContract
         foreach ($rules as $key => $rule) {
             switch ($this->getRuleType($rule, $key)) {
                 case 'callable':
+                    $this->addCallableMessage($validator, $rule, $name);
+                    break;
+
                 case 'string':
                     $this->addMessage($validator, $rule, $name);
                     break;
@@ -184,6 +186,24 @@ class Strategy implements StrategyContract
 
         if ($message) {
             $validator->addCustomMessage($name, $rule, $message);
+        }
+    }
+
+    /**
+     * Add message to validator
+     *
+     * @param Validator $validator
+     * @param Rule $rule
+     * @param string $name
+     * @return void
+     */
+    protected function addCallableMessage(Validator $validator, Rule $rule, $name)
+    {
+        $message = (new $rule)->message();
+        $ruleName = lcfirst((new \ReflectionClass($rule))->getShortName());
+
+        if ($message) {
+            $validator->addCustomMessage($name, $ruleName, $message);
         }
     }
 
@@ -272,6 +292,10 @@ class Strategy implements StrategyContract
      * @return string
      */
     protected function removeDebounce($rule) {
+      if (!is_string($rule)) {
+        return $rule;
+      }
+
       return preg_replace('/[:,]?debounce=\d*[^,]/', '', $rule);
     }
 
