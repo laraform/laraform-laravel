@@ -1,5 +1,7 @@
 <?php
 
 Route::group(['middleware' => 'web'], function () {
-    Route::post('/laraform/process', '\Laraform\Controllers\FormController@process');
+    $method = strtolower(config('laraform.method'));
+
+    Route::$method(config('laraform.endpoint'), '\Laraform\Controllers\FormController@process');
 });
