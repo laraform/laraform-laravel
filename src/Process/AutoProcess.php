@@ -7,7 +7,11 @@ use Laraform\Laraform;
 
 class AutoProcess
 {
-  public function process(Request $request, Laraform $form) {
+  public function process(Request $request, Laraform $form = null) {
+    if ($form === null) {
+      $form = app(config('laraform.path') . '\\' . decrypt($request->key));
+    }
+
     $form->setData($request->data);
     $form->setKeyFromData($request->data);
 
