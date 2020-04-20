@@ -750,6 +750,18 @@ class Laraform implements \JsonSerializable
 	}
 
 	/**
+	 * Set endpoint
+	 *
+	 * @return Laraform
+	 */
+	public function setEndpoint($endpoint)
+	{
+    $this->endpoint = $endpoint;
+
+    return $this;
+	}
+
+	/**
 	 * Returns roles attribute name
 	 *
 	 * @return string
