@@ -121,4 +121,18 @@ return [
     |
     */
     'method' => 'POST',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Elements
+    |--------------------------------------------------------------------------
+    |
+    | A list of custom elements to be added to Laraform.
+    |
+    | eg. [
+    |  'custom' => App\Elements\CustomElement::class,
+    | ]
+    |
+    */
+    'elements' => [],
 ];
