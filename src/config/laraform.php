@@ -40,7 +40,7 @@ return [
     | Default form layout. If `false` no layout will be used.
     |
     */
-    'layout' => 'horizontal',
+    'layout' => false,
 
     /*
     |--------------------------------------------------------------------------
