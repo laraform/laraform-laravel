@@ -12,7 +12,7 @@ class Factory
      * @param array $options
      * @return Laraform\Contracts\Elements\Element
      */
-    public function make($schema, $name = null, $options)
+    public function make($schema, $name = null, $options = [])
     {
         $type = $schema['type'] ?? 'collection';
 
